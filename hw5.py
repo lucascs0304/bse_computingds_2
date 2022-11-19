@@ -141,6 +141,7 @@ for elem in [1, 5, 25]:
 #
 from functools import reduce
 
+
 def count_simba(list_of_strings):
     counter = list(map(lambda x: x.count("Simba"), list_of_strings))
     add = reduce(lambda a, b: a+b, counter)
@@ -150,6 +151,7 @@ example = ["Simba and Nala are lions.", "I laugh in the face of danger.",
         "Hakuna matata", "Timon, Pumba and Simba are friends, but Simba could eat the other two."]
 
 count_simba(example)
+
 # 7)
 # Create a function called "get_day_month_year" that takes 
 # a list of datetimes.date and returns a pandas dataframe
@@ -157,7 +159,17 @@ count_simba(example)
 # is an element of the input list and has as value its 
 # day, month, and year.
 # 
-
+def get_day_month_year(listdt):
+    dia,mes,ano = ([],[],[])
+    for data in listdt:
+        dia.append(data.day)
+        mes.append(data.month)
+        ano.append(data.year)
+    final_df = pd.DataFrame(
+    {'day': dia,
+     'month': mes,
+     'year': ano})
+    print(final_df.head())
 # 8) 
 # Create a function called "compute_distance" that takes
 # a list of tuple pairs with latitude and longitude coordinates and 
@@ -166,6 +178,18 @@ count_simba(example)
 # HINT: You can use geopy.distance in order to compute the distance
 #
 
+from geopy.distance import geodesic
+
+lista_pontos = [((41.23,23.5), (41.5, 23.4)), ((52.38, 20.1),(52.3, 17.8))]
+
+def compute_distance(coord_list):
+    distances = []
+    for pair in coord_list:
+        dist_calc = geodesic(pair[0], pair[1]).km
+        distances.append(dist_calc)
+    print(distances)
+
+compute_distance(lista_pontos)
 #################################################
 # 9)
 # Consider a list that each element can be an integer or
