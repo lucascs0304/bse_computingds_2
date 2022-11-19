@@ -139,15 +139,16 @@ for elem in [1, 5, 25]:
 # ["Simba and Nala are lions.", "I laugh in the face of danger.",
 #  "Hakuna matata", "Timon, Pumba and Simba are friends, but Simba could eat the other two."] 
 #
+from functools import reduce
 
-example = ["Simba and Nala are lions.", "I laugh in the face of danger.", "Hakuna matata", "Timon, Pumba and Simba are friends, but Simba could eat the other two."]
 
-def count_simba(list_strings):
-    contador = 0
-    for strings in list_strings:
-        if "Simba" in strings:
-            contador += 1
-    print(contador)
+def count_simba(list_of_strings):
+    counter = list(map(lambda x: x.count("Simba"), list_of_strings))
+    add = reduce(lambda a, b: a+b, counter)
+    print(add)
+
+example = ["Simba and Nala are lions.", "I laugh in the face of danger.",
+        "Hakuna matata", "Timon, Pumba and Simba are friends, but Simba could eat the other two."]
 
 count_simba(example)
 
