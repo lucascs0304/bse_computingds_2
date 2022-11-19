@@ -167,5 +167,19 @@ for elem in [1, 5, 25]:
 # for instance for list_1=[[2], 3, [[1,2],5]] 
 # the result should be 13
 #
+import collections.abc
+#hyper needs the four following aliases to be done manually.
+collections.Iterable = collections.abc.Iterable
 
+from collections import Iterable
+def sum_general_int_list(collection):
+  for element in collection:
+    if isinstance(element, Iterable):
+      for x in sum_general_int_list(element):
+        yield x
+    else:
+      yield element
+    
+example = [[2], 4, 5, [1, [2], [3, 5, [7,8]], 10], 1]
+sum(sum_general_int_list(example))
 
