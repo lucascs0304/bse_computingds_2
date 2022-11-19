@@ -139,7 +139,17 @@ for elem in [1, 5, 25]:
 # ["Simba and Nala are lions.", "I laugh in the face of danger.",
 #  "Hakuna matata", "Timon, Pumba and Simba are friends, but Simba could eat the other two."] 
 #
+from functools import reduce
 
+def count_simba(list_of_strings):
+    counter = list(map(lambda x: x.count("Simba"), list_of_strings))
+    add = reduce(lambda a, b: a+b, counter)
+    print(add)
+
+example = ["Simba and Nala are lions.", "I laugh in the face of danger.",
+        "Hakuna matata", "Timon, Pumba and Simba are friends, but Simba could eat the other two."]
+
+count_simba(example)
 # 7)
 # Create a function called "get_day_month_year" that takes 
 # a list of datetimes.date and returns a pandas dataframe
